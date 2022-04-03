@@ -14,6 +14,10 @@ public class Rectangle {
         this.breadth = breadth;
     }
 
+    public static Rectangle createSquare(double side) throws NegativeDimensionException, ZeroDimensionException {
+        return new Rectangle(side, side);
+    }
+
     public double area() {
         return length * breadth;
     }

@@ -47,4 +47,14 @@ public class RectangleTest {
 
         assertThrows(NegativeDimensionException.class, () -> new Rectangle(length, breadth));
     }
+
+    @Test
+    void shouldFindAreaOfSquareWhenSideIsGiven() throws NegativeDimensionException, ZeroDimensionException {
+        double side = 2;
+
+        Rectangle square = Rectangle.createSquare(side);
+        double area = square.area();
+
+        assertThat(area, is(closeTo(4, 0.0001)));
+    }
 }
