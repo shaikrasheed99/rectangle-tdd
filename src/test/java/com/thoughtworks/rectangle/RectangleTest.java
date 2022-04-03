@@ -57,4 +57,14 @@ public class RectangleTest {
 
         assertThat(area, is(closeTo(4, 0.0001)));
     }
+
+    @Test
+    void shouldFindPerimeterOfSquareWhenSideIsGiven() throws NegativeDimensionException, ZeroDimensionException {
+        double side = 2;
+        Rectangle square = Rectangle.createSquare(side);
+
+        double perimeter = square.perimeter();
+
+        assertThat(perimeter, is(closeTo(8, 0.0001)));
+    }
 }
