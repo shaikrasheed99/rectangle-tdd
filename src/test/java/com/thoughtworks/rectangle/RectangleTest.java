@@ -1,5 +1,6 @@
 package com.thoughtworks.rectangle;
 
+import com.thoughtworks.rectangle.exceptions.NegativeDimensionException;
 import com.thoughtworks.rectangle.exceptions.ZeroDimensionException;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class RectangleTest {
     @Test
-    void shouldFindAreaWhenLengthAndBreadthAreGiven() throws ZeroDimensionException {
+    void shouldFindAreaWhenLengthAndBreadthAreGiven() throws ZeroDimensionException, NegativeDimensionException {
         double length = 1;
         double breadth = 1;
         Rectangle rectangle = new Rectangle(length, breadth);
@@ -21,7 +22,7 @@ public class RectangleTest {
     }
 
     @Test
-    void shouldFindPerimeterWhenLengthAndBreadthAreGiven() throws ZeroDimensionException {
+    void shouldFindPerimeterWhenLengthAndBreadthAreGiven() throws ZeroDimensionException, NegativeDimensionException {
         double length = 2;
         double breadth = 2;
         Rectangle rectangle = new Rectangle(length, breadth);
@@ -37,5 +38,13 @@ public class RectangleTest {
         double breadth = 0;
 
         assertThrows(ZeroDimensionException.class, () -> new Rectangle(length, breadth));
+    }
+
+    @Test
+    void shouldNotCreateRectangleWhenNegativeLengthOrBreadthIsGiven() {
+        double length = 1;
+        double breadth = -1;
+
+        assertThrows(NegativeDimensionException.class, () -> new Rectangle(length, breadth));
     }
 }
